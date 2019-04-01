@@ -14,10 +14,6 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 
-/**
- * Created by Ganesh on 18/9/17.
- */
-
 
 public class DelayedAutoCompleteTextView extends AppCompatAutoCompleteTextView {
     /* Custom View of AutocompleteTextView which helps load the textview after a few keystrokes,

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.beproject.models.Station;
 import com.example.beproject.models.StationApiResponse;
 import com.example.beproject.models.remote.SOService;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -38,14 +39,12 @@ public class Booking_Form extends AppCompatActivity {
     CheckBox checkBox;
     @BindView(R.id.checkBox2)
     CheckBox checkBox2;
-    @BindView(R.id.textView2)
-    TextView textView2;
-    @BindView(R.id.textView3)
-    TextView textView3;
-    @BindView(R.id.textView4)
-    TextView textView4;
-    @BindView(R.id.textView6)
-    TextView textView6;
+    @BindView(R.id.passenger2)
+    TextInputLayout passenger2;
+    @BindView(R.id.passenger3)
+    TextInputLayout passenger3;
+    @BindView(R.id.passenger4)
+    TextInputLayout passenger4;
 
 
     private AnswerAdapter answerAdapter;
