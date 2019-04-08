@@ -76,14 +76,28 @@ public class Login_Form extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
 
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                    Toast.makeText(Login_Form.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(), Booking_Form.class));
+                                        Toast.makeText(Login_Form.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        email.setText("");
+                                        password.setText("");
 
+                                    } else {
+                                        Toast.makeText(Login_Form.this, "Verify Your email", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        email.setText("");
+                                        password.setText("");
+                                    }
 
                                 } else {
 
                                     Toast.makeText(Login_Form.this, "Login UnSuccessful", Toast.LENGTH_SHORT).show();
+                                    progressBar.setVisibility(View.GONE);
+                                    email.setText("");
+                                    password.setText("");
+
                                 }
 
                                 // ...

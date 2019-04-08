@@ -13,16 +13,22 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Signup_Form extends AppCompatActivity {
 
-    EditText txtEmail, txtPassword, txtConfirmPassword, txtAadharNo;
+    EditText txtEmail, txtPassword, txtConfirmPassword, txtAadharNo, txtContactNo;
     Button btnRegister;
     ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
+
+    DatabaseReference databaseReference;
+    //FirebaseDatabase firebaseDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +36,16 @@ public class Signup_Form extends AppCompatActivity {
         setContentView(R.layout.activity_signup__form);
         getSupportActionBar().setTitle("Register");
 
+
         txtEmail = findViewById(R.id.txt_email);
         txtPassword = findViewById(R.id.txt_password);
         txtConfirmPassword = findViewById(R.id.txt_confirm_password);
         txtAadharNo = findViewById(R.id.txt_aadharno);
+        txtContactNo = findViewById(R.id.txt_contactno);
         btnRegister = findViewById(R.id.buttonRegister);
         progressBar = findViewById(R.id.progressBar);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("registerData");
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -47,6 +57,7 @@ public class Signup_Form extends AppCompatActivity {
                 String password = txtPassword.getText().toString().trim();
                 String confirmpassword = txtConfirmPassword.getText().toString().trim();
                 String aadhar = txtAadharNo.getText().toString().trim();
+                String contact = txtContactNo.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
 
@@ -57,6 +68,21 @@ public class Signup_Form extends AppCompatActivity {
                 if (TextUtils.isEmpty(aadhar)) {
 
                     Toast.makeText(Signup_Form.this, "Please Enter Aadhar number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (aadhar.length() != 12) {
+
+                    Toast.makeText(Signup_Form.this, "Invalid Aadhar number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(contact)) {
+
+                    Toast.makeText(Signup_Form.this, "Please Enter Contact number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (contact.length() != 10) {
+
+                    Toast.makeText(Signup_Form.this, "Invalid Contact number", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -92,8 +118,44 @@ public class Signup_Form extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
 
-                                        startActivity(new Intent(getApplicationContext(), Signup_Form.class));
-                                        Toast.makeText(Signup_Form.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                        firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                Toast.makeText(Signup_Form.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                                progressBar.setVisibility(View.GONE);
+
+                                            }
+                                        });
+
+                                        RegisterData info = new RegisterData(
+                                                aadhar,
+                                                contact,
+                                                email,
+                                                password
+
+                                        );
+
+                                        //Toast.makeText(Signup_Form.this, "Hiiiiiiiiii", Toast.LENGTH_SHORT).show();
+
+                                        FirebaseDatabase.getInstance().getReference("registerData")
+                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(Signup_Form.this, "Check Your Email For Verification", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(getApplicationContext(), Login_Form.class));
+                                                progressBar.setVisibility(View.GONE);
+                                                txtAadharNo.setText("");
+                                                txtConfirmPassword.setText("");
+                                                txtEmail.setText("");
+                                                txtPassword.setText("");
+                                                txtContactNo.setText("");
+
+                                            }
+                                        });
+
+
 
 
                                     } else {

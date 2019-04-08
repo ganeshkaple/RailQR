@@ -20,9 +20,6 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by ganesh on 2/1/18.
- */
 
 public class AnswerAdapter extends BaseAdapter implements Filterable {
     private static final int MAX_RESULTS = 10;

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onError(Throwable e) {
+            publ/ic void onError(Throwable e) {
                 showErrorMessage();
                 Log.d(getLocalClassName(),"error " , e);
 
