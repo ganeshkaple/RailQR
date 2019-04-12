@@ -22,6 +22,7 @@ import com.example.beproject.models.StationApiResponse;
 import com.example.beproject.models.remote.SOService;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
 import java.util.List;
@@ -61,6 +62,7 @@ public class Booking_Form extends AppCompatActivity {
 
 
     FirebaseAuth firebaseAuth;
+    DatabaseReference firebaseDatabase;
 
     private AnswerAdapter answerAdapter;
     private SOService service;
@@ -70,11 +72,15 @@ public class Booking_Form extends AppCompatActivity {
     EditText pas2, pas3, pas4, pas5;
     private DatePickerDialog datePickerDialog;
     private Calendar cal;
+    String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking__form);
+
+        UID = getIntent().getStringExtra("CurrentUserUID");
+
         ButterKnife.bind(this);
         service = ApiUtils.getSOService();
         answerAdapter = new AnswerAdapter(this, service, new AnswerAdapter.PostItemListener() {
@@ -82,7 +88,6 @@ public class Booking_Form extends AppCompatActivity {
             public void onPostClick(String id) {
                 Toast.makeText(Booking_Form.this, "fsdf", Toast.LENGTH_LONG).show();
             }
-
 
         });
 
@@ -187,13 +192,30 @@ public class Booking_Form extends AppCompatActivity {
                     Toast.makeText(Booking_Form.this, "hello" , Toast.LENGTH_LONG).show();
                 }*/
 
+                //String uid=firebaseAuth.getCurrentUser().getUid();
+                //Toast.makeText(Booking_Form.this, "hello:"+uid , Toast.LENGTH_LONG).show();
+
                 String a2 = pas2.getText().toString();
                 String a3 = pas3.getText().toString();
                 String a4 = pas4.getText().toString();
                 String a5 = pas5.getText().toString();
 
+                if (a2.matches(""))
+                    a2 = "NA";
+                if (a3.matches(""))
+                    a3 = "NA";
+                if (a4.matches(""))
+                    a4 = "NA";
+                if (a5.matches(""))
+                    a5 = "NA";
+                if (UID.matches(""))
+                    UID = "NA";
+
+
+                //Toast.makeText(Booking_Form.this,"Passenger2222:"+uid, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(getBaseContext(), PassengerDetails.class);
-                //intent.putExtra("passenger1", pass1);
+                intent.putExtra("uid", UID);
                 intent.putExtra("passenger2", a2);
                 intent.putExtra("passenger3", a3);
                 intent.putExtra("passenger4", a4);
@@ -250,14 +272,50 @@ public class Booking_Form extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-/*
+
                String stationName = s.toString();
                 if (stationName.length() >3)
                 loadAnswer(stationName);
-*/
+
             }
         });
     }
+
+
+/*    public void showPassenger(String AadharNo,TextView t1, TextView t2, TextView t3, TextView t4)
+    {
+        firebaseDatabase= FirebaseDatabase.getInstance().getReference().child("registerData").child(AadharNo);
+
+
+        firebaseDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                aadharno=dataSnapshot.child("aadharNo").getValue().toString();
+                name = dataSnapshot.child("name").getValue().toString();
+                age = dataSnapshot.child("dob").getValue().toString();
+                gender = dataSnapshot.child("contact").getValue().toString();
+
+                *//*t1.setText(aadharno);
+                t2.setText(name);
+                t3.setText(age);
+                t4.setText(gender);*//*
+
+
+                //Toast.makeText(PassengerDetails.this,aadharno+name,Toast.LENGTH_LONG).show();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+            }
+        });
+    }*/
+
 
     private void loadAnswer(String stationName) {
        /* service.getStationNames("pun", service.API_KEY).enqueue(new Callback<SOAnswerResponse>() {
@@ -277,7 +335,7 @@ public class Booking_Form extends AppCompatActivity {
             @Override
             public void onFailure(Call<SOAnswerResponse> call, Throwable t) {
                 showErrorMessage();
-                Log.d(getLocalClassName(),"error Bitch");
+                Log.d(getLocalClassName(),"error ");
             }
         });*/
 

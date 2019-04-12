@@ -29,6 +29,8 @@ public class Signup_Form extends AppCompatActivity {
     DatabaseReference databaseReference;
     //FirebaseDatabase firebaseDatabase;
 
+    String email, password, confirmpassword, aadhar, contact;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +55,11 @@ public class Signup_Form extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = txtEmail.getText().toString().trim();
-                String password = txtPassword.getText().toString().trim();
-                String confirmpassword = txtConfirmPassword.getText().toString().trim();
-                String aadhar = txtAadharNo.getText().toString().trim();
-                String contact = txtContactNo.getText().toString().trim();
+                email = txtEmail.getText().toString().trim();
+                password = txtPassword.getText().toString().trim();
+                confirmpassword = txtConfirmPassword.getText().toString().trim();
+                aadhar = txtAadharNo.getText().toString().trim();
+                contact = txtContactNo.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
 
@@ -139,7 +141,7 @@ public class Signup_Form extends AppCompatActivity {
                                         //Toast.makeText(Signup_Form.this, "Hiiiiiiiiii", Toast.LENGTH_SHORT).show();
 
                                         FirebaseDatabase.getInstance().getReference("registerData")
-                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .child(firebaseAuth.getCurrentUser().getUid())
                                                 .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {

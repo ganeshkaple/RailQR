@@ -3,6 +3,7 @@ package com.example.beproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class Login_Form extends AppCompatActivity {
     ProgressBar progressBar;
     Button login;
     private FirebaseAuth firebaseAuth;
+    String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class Login_Form extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
+                UID = firebaseAuth.getCurrentUser().getUid();
 
                 firebaseAuth.signInWithEmailAndPassword(email1, password1)
                         .addOnCompleteListener(Login_Form.this, new OnCompleteListener<AuthResult>() {
@@ -78,8 +81,16 @@ public class Login_Form extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     if (firebaseAuth.getCurrentUser().isEmailVerified()) {
 
-                                        startActivity(new Intent(getApplicationContext(), Booking_Form.class));
+                                        //startActivity(new Intent(getApplicationContext(), Booking_Form.class));
+
+                                        Intent intent = new Intent(getBaseContext(), Booking_Form.class);
+                                        //intent.putExtra("passenger1", uid);
+                                        intent.putExtra("CurrentUserUID", UID);
+                                        startActivity(intent);
+
                                         Toast.makeText(Login_Form.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(Login_Form.this, UID, Toast.LENGTH_SHORT).show();
+                                        Log.e("UID", UID);
                                         progressBar.setVisibility(View.GONE);
                                         email.setText("");
                                         password.setText("");
