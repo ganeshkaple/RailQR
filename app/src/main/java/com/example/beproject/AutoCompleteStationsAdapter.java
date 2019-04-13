@@ -21,11 +21,11 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class AnswerAdapter extends BaseAdapter implements Filterable {
+public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterable {
     private static final int MAX_RESULTS = 10;
     private final Context context;
     private final PostItemListener itemListener;/*
-    public AnswerAdapter(List<Station> items, Context context, PostItemListener itemListener) { ;
+    public AutoCompleteStationsAdapter(List<Station> items, Context context, PostItemListener itemListener) { ;
         this.items = items;
         this.context = context;
         this.itemListener = itemListener;
@@ -34,7 +34,7 @@ public class AnswerAdapter extends BaseAdapter implements Filterable {
     private List<Station> items = new ArrayList<>();
     private SOService service;
 
-    public AnswerAdapter(Context context, SOService service, PostItemListener itemListener) {
+    public AutoCompleteStationsAdapter(Context context, SOService service, PostItemListener itemListener) {
         this.context = context;
         this.service = service;
         this.itemListener = itemListener;

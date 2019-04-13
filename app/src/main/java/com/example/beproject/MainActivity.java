@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AnswerAdapter answerAdapter;
+    private AutoCompleteStationsAdapter autoCompleteStationsAdapter;
     private SOService service;
     private RecyclerView recyclerView;
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         service = ApiUtils.getSOService();
         recyclerView = findViewById(R.id.recycler_view);
-       /* answerAdapter = new AnswerAdapter(Collections.<Station>emptyList(),this,  new AnswerAdapter.PostItemListener() {
+       /* autoCompleteStationsAdapter = new AutoCompleteStationsAdapter(Collections.<Station>emptyList(),this,  new AutoCompleteStationsAdapter.PostItemListener() {
             @Override
             public void onPostClick(String id) {
                 Toast.makeText(MainActivity.this,"eyah hfwsf" + id, Toast.LENGTH_LONG).show();
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         });
        */
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setAdapter(answerAdapter);
+        //recyclerView.setAdapter(autoCompleteStationsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNext(List<Station> stations) {
-                answerAdapter.updateAnswers(stations);
+                autoCompleteStationsAdapter.updateAnswers(stations);
             }
         });*/
         service.getStationNames(stationName, service.API_KEY)
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(StationApiResponse stationApiResponse) {
-                        answerAdapter.updateAnswers(stationApiResponse.getStations());
+                        autoCompleteStationsAdapter.updateAnswers(stationApiResponse.getStations());
 
                     }
                 });

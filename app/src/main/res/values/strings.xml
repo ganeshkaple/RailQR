@@ -225,5 +225,6 @@
 
     <string name="error_occurred">Oh no! Something bad happened</string>
     <string name="currency_symbol">Rs. %d</string>
+    <string name="title_activity_train_list">TrainListActivity</string>
 
 </resources>

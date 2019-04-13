@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,25 +40,10 @@ import rx.schedulers.Schedulers;
 
 public class Booking_Form extends AppCompatActivity {
 
-    private final TextWatcher textWatcherForAutoComplete = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    public static final String SOURCE_STATION_CODE = "sourceStationCode";
+    public static final String DESTINATION_STATION_CODE = "destinationStationCode";
+    public static final String JOURNEY_DATE = "journeyDate";
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            String stationName = s.toString();
-            if (stationName.length() > 3)
-                loadAutoCompleteSuggestions(stationName);
-        }
-    };
     String[] fruits = {"Apple", "Banana", "Cherry", "Date", "Grape", "Kiwi", "Mango", "Pear"};
     @BindView(R.id.autoCompleteSourceStation)
     AutoCompleteTextView autoCompleteSourceStation;
@@ -84,18 +71,18 @@ public class Booking_Form extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     DatabaseReference firebaseDatabase;
-
-    private AnswerAdapter answerAdapter;
-    private SOService service;
     int year;
     int month;
     int dayofmonth;
     EditText pas2, pas3, pas4, pas5;
-    private DatePickerDialog datePickerDialog;
-    private Calendar cal;
     String UID;
     @BindView(R.id.autoCompleteDestinationStation)
     AutoCompleteTextView autoCompleteDestinationStation;
+    private AutoCompleteStationsAdapter autoCompleteSourceStationsAdapter;
+    private AutoCompleteStationsAdapter autoCompleteDestinationStationsAdapter;
+    private SOService service;
+    private DatePickerDialog datePickerDialog;
+    private Date journeyDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,14 +93,6 @@ public class Booking_Form extends AppCompatActivity {
 
         ButterKnife.bind(this);
         service = ApiUtils.getSOService();
-        answerAdapter = new AnswerAdapter(this, service, new AnswerAdapter.PostItemListener() {
-            @Override
-            public void onPostClick(String id) {
-                Toast.makeText(Booking_Form.this, "fsdf", Toast.LENGTH_LONG).show();
-            }
-
-        });
-
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -218,7 +197,7 @@ public class Booking_Form extends AppCompatActivity {
                 //String uid=firebaseAuth.getCurrentUser().getUid();
                 //Toast.makeText(Booking_Form.this, "hello:"+uid , Toast.LENGTH_LONG).show();
 
-                String a2 = pas2.getText().toString();
+             /*   String a2 = pas2.getText().toString();
                 String a3 = pas3.getText().toString();
                 String a4 = pas4.getText().toString();
                 String a5 = pas5.getText().toString();
@@ -233,16 +212,26 @@ public class Booking_Form extends AppCompatActivity {
                     a5 = "NA";
                 if (UID.matches(""))
                     UID = "NA";
-
+*/
 
                 //Toast.makeText(Booking_Form.this,"Passenger2222:"+uid, Toast.LENGTH_LONG).show();
-
+/*
                 Intent intent = new Intent(getBaseContext(), PassengerDetails.class);
                 intent.putExtra("uid", UID);
                 intent.putExtra("passenger2", a2);
                 intent.putExtra("passenger3", a3);
                 intent.putExtra("passenger4", a4);
-                intent.putExtra("passenger5", a5);
+                intent.putExtra("passenger5", a5);*/
+                String sourceStationCode = autoCompleteSourceStation.getText().toString();
+                String destinationStationCode = autoCompleteDestinationStation.getText().toString();
+                if (TextUtils.isEmpty(sourceStationCode) && TextUtils.isEmpty(destinationStationCode) && journeyDate != null)
+                    return;
+//TODO Add refined validations later
+                Intent intent = new Intent(Booking_Form.this, TrainListActivity.class);
+
+                intent.putExtra(SOURCE_STATION_CODE, sourceStationCode);
+                intent.putExtra(DESTINATION_STATION_CODE, destinationStationCode);
+                intent.putExtra(JOURNEY_DATE, journeyDate);
 
                 startActivity(intent);
             }
@@ -251,7 +240,8 @@ public class Booking_Form extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cal = Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
+
                 year = cal.get(Calendar.YEAR);
                 month = cal.get(Calendar.MONTH);
                 dayofmonth = cal.get(Calendar.DAY_OF_MONTH);
@@ -261,6 +251,9 @@ public class Booking_Form extends AppCompatActivity {
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                                 textView.setText(day + "/" + (month + 1) + "/" + year);
 
+
+                                journeyDate = new Date(day, month, year);
+
                             }
                         }, year, month, dayofmonth);
 
@@ -269,20 +262,87 @@ public class Booking_Form extends AppCompatActivity {
             }
         });
 
+        autoCompleteSourceStationsAdapter = new AutoCompleteStationsAdapter(this, service, new AutoCompleteStationsAdapter.PostItemListener() {
+            @Override
+            public void onPostClick(String id) {
+                //Toast.makeText(Booking_Form.this, "fsdf", Toast.LENGTH_LONG).show();
+            }
+
+        });
 
 
-        autoCompleteSourceStation.setAdapter(answerAdapter);
+        autoCompleteSourceStation.setAdapter(autoCompleteSourceStationsAdapter);
         autoCompleteSourceStation.setThreshold(3);
-        autoCompleteSourceStation.addTextChangedListener(textWatcherForAutoComplete);
+        autoCompleteSourceStation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-        autoCompleteDestinationStation.setAdapter(answerAdapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String stationName = s.toString();
+                if (stationName.length() > 3)
+                    loadAutoCompleteSuggestions(stationName, StationTypeEnum.SOURCE);
+            }
+        });
+
+        autoCompleteSourceStation.setOnItemClickListener((parent, view, position, id) -> {
+            Station station = (Station) parent.getItemAtPosition(position);
+            autoCompleteSourceStation.setText(station.getCode());
+
+
+        });
+
+        autoCompleteDestinationStationsAdapter = new AutoCompleteStationsAdapter(this, service, new AutoCompleteStationsAdapter.PostItemListener() {
+            @Override
+            public void onPostClick(String id) {
+                //Toast.makeText(Booking_Form.this, "fsdf", Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        autoCompleteDestinationStation.setAdapter(autoCompleteDestinationStationsAdapter);
         autoCompleteDestinationStation.setThreshold(3);
-        autoCompleteDestinationStation.addTextChangedListener(textWatcherForAutoComplete);
+        autoCompleteDestinationStation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String stationName = s.toString();
+                if (stationName.length() > 3)
+                    loadAutoCompleteSuggestions(stationName, StationTypeEnum.DESTINATION);
+            }
+        });
+
+        autoCompleteDestinationStation.setOnItemClickListener((parent, view, position, id) -> {
+            Station station = (Station) parent.getItemAtPosition(position);
+            autoCompleteDestinationStation.setText(station.getCode());
+
+
+        });
+        // Might be required in case of above code doesnt work   autoCompleteSourceStationsAdapter = new AutoCompleteStationsAdapter(this, service, id -> Toast.makeText(Booking_Form.this, "fsdf", Toast.LENGTH_LONG).show());
+
+
     }
 
 
-    private void loadAutoCompleteSuggestions(String stationName) {
+    private void loadAutoCompleteSuggestions(String stationName, StationTypeEnum stationType) {
         service.getStationNames(stationName, service.API_KEY)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -306,8 +366,13 @@ public class Booking_Form extends AppCompatActivity {
                        /* for (Station station : stations) {
                             Toast.makeText(Booking_Form.this, station.getName() + " " + station.getCode(), Toast.LENGTH_SHORT).show();
                         }*/
-                        answerAdapter.updateAnswers(stations);
+                        if (stationType.equals(StationTypeEnum.SOURCE))
+                            Booking_Form.this.autoCompleteSourceStationsAdapter.updateAnswers(stations);
+                        else
+                            Booking_Form.this.autoCompleteDestinationStationsAdapter.updateAnswers(stations);
+
                     }
+
                 });
 
 
