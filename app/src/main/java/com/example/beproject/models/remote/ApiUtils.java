@@ -1,7 +1,4 @@
-package com.example.beproject;
-
-import com.example.beproject.models.remote.RetrofitClient;
-import com.example.beproject.models.remote.SOService;
+package com.example.beproject.models.remote;
 
 public class ApiUtils {
     public static final String BASE_URL = "https://api.railwayapi.com/v2/";

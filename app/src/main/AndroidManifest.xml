@@ -16,7 +16,10 @@
         <activity android:name=".PassengerDetails">
 
         </activity>
-        <activity android:name=".AdminAadharInsert">
+        <activity
+            android:name=".AdminAadharInsert"
+            android:exported="true">
+
 
         </activity>
         <activity android:name=".Booking_Form">

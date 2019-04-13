@@ -65,13 +65,13 @@ public class PassengerDetails extends AppCompatActivity {
         c5 = findViewById(R.id.card5);
 
         String currentUserUID = getIntent().getStringExtra("uid");
-        String pass2 = getIntent().getStringExtra("passenger2");
+        String adharForPassenger2 = getIntent().getStringExtra("passenger2");
         String pass3 = getIntent().getStringExtra("passenger3");
         String pass4 = getIntent().getStringExtra("passenger4");
         String pass5 = getIntent().getStringExtra("passenger5");
 
 
-        Log.e("Paaaaasssssss2 ", pass2);
+        Log.e("Paaaaasssssss2 ", adharForPassenger2);
         Log.e("Paaaaasssssss3 ", pass3);
         Log.e("Paaaaasssssss4 ", pass4);
         Log.e("Paaaaasssssss5 ", pass5);
@@ -81,28 +81,28 @@ public class PassengerDetails extends AppCompatActivity {
 
         //for current passengers
         if (currentUserUID.matches("NA")) {
-            //showPassenger(pass2,a2,n2,ag2,gen2);
+            //showPassenger(adharForPassenger2,a2,n2,ag2,gen2);
             c1.setVisibility(View.GONE);
 
         } else {
 
-            String CurrentAadharNo = getCurrentUserAadharNo(currentUserUID);
-            showPassenger(CurrentAadharNo, a1, n1, ag1, gen1);
+            getCurrentUserAadharNo(currentUserUID);
+
             //c1.setVisibility(View.GONE);
         }
 
         //for other 3 passengers
-        if (pass2.matches("NA")) {
-            //showPassenger(pass2,a2,n2,ag2,gen2);
+        if (adharForPassenger2.matches("NA")) {
+            //showPassenger(adharForPassenger2,a2,n2,ag2,gen2);
             c2.setVisibility(View.GONE);
 
         } else {
-            showPassenger(pass2, a2, n2, ag2, gen2);
+            showPassenger(adharForPassenger2, a2, n2, ag2, gen2);
             //c1.setVisibility(View.GONE);
         }
 
         if (pass3.matches("NA")) {
-            //showPassenger(pass2,a2,n2,ag2,gen2);
+            //showPassenger(adharForPassenger2,a2,n2,ag2,gen2);
             c3.setVisibility(View.GONE);
 
         } else {
@@ -111,7 +111,7 @@ public class PassengerDetails extends AppCompatActivity {
         }
 
         if (pass4.matches("NA")) {
-            //showPassenger(pass2,a2,n2,ag2,gen2);
+            //showPassenger(adharForPassenger2,a2,n2,ag2,gen2);
             c4.setVisibility(View.GONE);
 
         } else {
@@ -121,7 +121,7 @@ public class PassengerDetails extends AppCompatActivity {
 
 
         if (pass5.matches("NA")) {
-            //showPassenger(pass2,a2,n2,ag2,gen2);
+            //showPassenger(adharForPassenger2,a2,n2,ag2,gen2);
             c5.setVisibility(View.GONE);
 
         } else {
@@ -142,6 +142,7 @@ public class PassengerDetails extends AppCompatActivity {
 
 
                 CurrentUserAadhar = dataSnapshot.child("AadharNo").getValue().toString();
+                showPassenger(CurrentUserAadhar, a1, n1, ag1, gen1);
                 //name = dataSnapshot.child("name").getValue().toString();
                 //age = dataSnapshot.child("dob").getValue().toString();
                 //gender = dataSnapshot.child("contact").getValue().toString();

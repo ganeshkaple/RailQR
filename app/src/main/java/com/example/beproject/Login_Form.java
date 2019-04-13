@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,14 +57,17 @@ public class Login_Form extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email1 = email.getText().toString().trim();
-                String password1 = password.getText().toString().trim();
+//                String email1 = email.getText().toString().trim();
+//                String password1 = password.getText().toString().trim();
 
+
+                String email1 = "piyugaikwad1997@gmail.com";
                 if (TextUtils.isEmpty(email1)) {
                     Toast.makeText(Login_Form.this, "Please enter email-id", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                String password1 = "qwertypiyu";
                 if (TextUtils.isEmpty(password1)) {
                     Toast.makeText(Login_Form.this, "Please enter password", Toast.LENGTH_SHORT).show();
                     return;
@@ -72,34 +76,39 @@ public class Login_Form extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                UID = firebaseAuth.getCurrentUser().getUid();
+                final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
 
                 firebaseAuth.signInWithEmailAndPassword(email1, password1)
                         .addOnCompleteListener(Login_Form.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
+                                    if (currentUser != null) {
+                                        UID = currentUser.getUid();
 
-                                        //startActivity(new Intent(getApplicationContext(), Booking_Form.class));
+                                        if (currentUser.isEmailVerified()) {
 
-                                        Intent intent = new Intent(getBaseContext(), Booking_Form.class);
-                                        //intent.putExtra("passenger1", uid);
-                                        intent.putExtra("CurrentUserUID", UID);
-                                        startActivity(intent);
+                                            //startActivity(new Intent(getApplicationContext(), Booking_Form.class));
 
-                                        Toast.makeText(Login_Form.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        //Toast.makeText(Login_Form.this, UID, Toast.LENGTH_SHORT).show();
-                                        Log.e("UID", UID);
-                                        progressBar.setVisibility(View.GONE);
-                                        email.setText("");
-                                        password.setText("");
+                                            Intent intent = new Intent(Login_Form.this, Booking_Form.class);
+                                            //intent.putExtra("passenger1", uid);
+                                            intent.putExtra("CurrentUserUID", UID);
+                                            startActivity(intent);
 
-                                    } else {
-                                        Toast.makeText(Login_Form.this, "Verify Your email", Toast.LENGTH_SHORT).show();
-                                        progressBar.setVisibility(View.GONE);
-                                        email.setText("");
-                                        password.setText("");
+                                            Toast.makeText(Login_Form.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(Login_Form.this, UID, Toast.LENGTH_SHORT).show();
+                                            Log.e("UID", UID);
+                                            progressBar.setVisibility(View.GONE);
+                                            email.setText("");
+                                            password.setText("");
+
+                                        } else {
+                                            Toast.makeText(Login_Form.this, "Verify Your email", Toast.LENGTH_SHORT).show();
+                                            progressBar.setVisibility(View.GONE);
+                                            email.setText("");
+                                            password.setText("");
+                                        }
                                     }
 
                                 } else {
@@ -111,7 +120,7 @@ public class Login_Form extends AppCompatActivity {
 
                                 }
 
-                                // ...
+
                             }
                         });
 

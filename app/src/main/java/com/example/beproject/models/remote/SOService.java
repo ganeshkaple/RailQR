@@ -22,4 +22,6 @@ public interface SOService {
 
     @GET("/answers?order=desc&sort=activity&site=stackoverflow")
     Call<SOAnswerResponse> getAnswers(@Query("tagged") String tags);
+
+
 }

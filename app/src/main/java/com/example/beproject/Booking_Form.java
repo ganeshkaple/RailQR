@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.beproject.models.Station;
 import com.example.beproject.models.StationApiResponse;
+import com.example.beproject.models.remote.ApiUtils;
 import com.example.beproject.models.remote.SOService;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,10 +37,29 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class Booking_Form extends AppCompatActivity {
+
+    private final TextWatcher textWatcherForAutoComplete = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            String stationName = s.toString();
+            if (stationName.length() > 3)
+                loadAutoCompleteSuggestions(stationName);
+        }
+    };
+    String[] fruits = {"Apple", "Banana", "Cherry", "Date", "Grape", "Kiwi", "Mango", "Pear"};
     @BindView(R.id.autoCompleteSourceStation)
-    DelayedAutoCompleteTextView autoCompleteSourceStation;
-    @BindView(R.id.autoCompleteDestinationStation)
-    DelayedAutoCompleteTextView autoCompleteDestinationStation;
+    AutoCompleteTextView autoCompleteSourceStation;
     @BindView(R.id.imageButton)
     ImageButton imageButton;
     @BindView(R.id.textView)
@@ -73,6 +94,8 @@ public class Booking_Form extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Calendar cal;
     String UID;
+    @BindView(R.id.autoCompleteDestinationStation)
+    AutoCompleteTextView autoCompleteDestinationStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,13 +131,13 @@ public class Booking_Form extends AppCompatActivity {
                     passenger3.setVisibility(View.VISIBLE);
                     passenger4.setVisibility(View.VISIBLE);
                 }
-                if (isChecked && checkBox2.isChecked() != true) {
+                if (isChecked && !checkBox2.isChecked()) {
                     passenger2.setVisibility(View.GONE);
                     passenger3.setVisibility(View.GONE);
                     passenger4.setVisibility(View.GONE);
                     passenger5.setVisibility(View.GONE);
                 }
-                if (!isChecked && checkBox2.isChecked() != true) {
+                if (!isChecked && !checkBox2.isChecked()) {
                     passenger2.setVisibility(View.VISIBLE);
                     passenger3.setVisibility(View.VISIBLE);
                     passenger4.setVisibility(View.VISIBLE);
@@ -248,131 +271,31 @@ public class Booking_Form extends AppCompatActivity {
 
 
 
-
         autoCompleteSourceStation.setAdapter(answerAdapter);
-        autoCompleteSourceStation.setLoadingIndicator(
-                findViewById(R.id.pb_loading_indicator));
+        autoCompleteSourceStation.setThreshold(3);
+        autoCompleteSourceStation.addTextChangedListener(textWatcherForAutoComplete);
 
-        autoCompleteSourceStation.setThreshold(10);
-        autoCompleteSourceStation.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-/*               String stationName = s.toString();
-                if (stationName.length() >3)
-                    loadAnswer(stationName);
-*/
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-               String stationName = s.toString();
-                if (stationName.length() >3)
-                loadAnswer(stationName);
-
-            }
-        });
+        autoCompleteDestinationStation.setAdapter(answerAdapter);
+        autoCompleteDestinationStation.setThreshold(3);
+        autoCompleteDestinationStation.addTextChangedListener(textWatcherForAutoComplete);
     }
 
 
-/*    public void showPassenger(String AadharNo,TextView t1, TextView t2, TextView t3, TextView t4)
-    {
-        firebaseDatabase= FirebaseDatabase.getInstance().getReference().child("registerData").child(AadharNo);
-
-
-        firebaseDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                aadharno=dataSnapshot.child("aadharNo").getValue().toString();
-                name = dataSnapshot.child("name").getValue().toString();
-                age = dataSnapshot.child("dob").getValue().toString();
-                gender = dataSnapshot.child("contact").getValue().toString();
-
-                *//*t1.setText(aadharno);
-                t2.setText(name);
-                t3.setText(age);
-                t4.setText(gender);*//*
-
-
-                //Toast.makeText(PassengerDetails.this,aadharno+name,Toast.LENGTH_LONG).show();
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-
-            }
-        });
-    }*/
-
-
-    private void loadAnswer(String stationName) {
-       /* service.getStationNames("pun", service.API_KEY).enqueue(new Callback<SOAnswerResponse>() {
-
-
-            @Override
-            public void onResponse(Call<SOAnswerResponse> call, retrofit2.Response<SOAnswerResponse> response) {
-                if (response.isSuccessful()){
-
-
-                }else {
-                    int statusCode = response.code();
-                    //handle request errors depending on status code
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SOAnswerResponse> call, Throwable t) {
-                showErrorMessage();
-                Log.d(getLocalClassName(),"error ");
-            }
-        });*/
-
-        /*service.getStationNames("pun", service.API_KEY)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<List<Station>>() {
-            @Override
-            public void onCompleted() {
-                Toast.makeText(MainActivity.this,"Call completed",Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                showErrorMessage();
-                Log.d(getLocalClassName(),"error " , e);
-
-            }
-
-            @Override
-            public void onNext(List<Station> stations) {
-                answerAdapter.updateAnswers(stations);
-            }
-        });*/
+    private void loadAutoCompleteSuggestions(String stationName) {
         service.getStationNames(stationName, service.API_KEY)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<StationApiResponse>() {
                     @Override
                     public void onCompleted() {
-                        Toast.makeText(Booking_Form.this, "Call completed", Toast.LENGTH_LONG).show();
+                        // Toast.makeText(Booking_Form.this, "Call completed", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        showErrorMessage();
-                        Log.d(getLocalClassName(), "error ", e);
+                        //   showErrorMessage();
+                        Log.e(getLocalClassName(), "error While Loading AutoComplete for source and destination", e);
 
                     }
 
@@ -380,12 +303,10 @@ public class Booking_Form extends AppCompatActivity {
                     public void onNext(StationApiResponse stationApiResponse) {
 
                         List<Station> stations = stationApiResponse.getStations();
-                        for (Station station : stations) {
+                       /* for (Station station : stations) {
                             Toast.makeText(Booking_Form.this, station.getName() + " " + station.getCode(), Toast.LENGTH_SHORT).show();
-                        }
+                        }*/
                         answerAdapter.updateAnswers(stations);
-
-
                     }
                 });
 

@@ -11,7 +11,7 @@
 
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:layout_marginTop="5dp"
         android:baselineAligned="false"
@@ -20,7 +20,7 @@
         tools:context=".Booking_Form">
 
 
-        <com.example.beproject.DelayedAutoCompleteTextView
+        <AutoCompleteTextView
             android:id="@+id/autoCompleteSourceStation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,40 +29,46 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:baselineAligned="false"
-            android:text="From"
+            android:hint="From"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ProgressBar
-            android:id="@+id/pb_loading_indicator"
-            style="?android:attr/progressBarStyleSmall"
-            android:layout_width="47dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="116dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/spinner"
-            tools:visibility="gone" />
+            <requestFocus />
+        </AutoCompleteTextView>
+        <!--
 
+                <ProgressBar
+                    android:id="@+id/pb_loading_indicator"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="47dp"
+                    android:layout_height="43dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="116dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner"
+                    tools:visibility="gone" />
 
-        <com.example.beproject.DelayedAutoCompleteTextView
+        -->
+
+        <AutoCompleteTextView
             android:id="@+id/autoCompleteDestinationStation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="16dp"
-            android:text="To"
+            android:hint="To"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/autoCompleteSourceStation" />
+
 
         <ImageButton
             android:id="@+id/imageButton"
