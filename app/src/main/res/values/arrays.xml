@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Classes">
+        <item>AC First Class (1A)</item>
+        <item>AC 2 Tier (2A)</item>
+        <item>AC 3 Tier (3A)</item>
+        <item>AC Three Economy (3E)</item>
+        <item>AC Chair Car (CC)</item>
+        <item>Exec.Chair Car (EC)</item>
+        <item>Sleeper (SL)</item>
+        <item>Anubhuti Class (EA)</item>
+        <item>Second Seating (2S)</item>
+
+
+    </string-array>
+</resources>
