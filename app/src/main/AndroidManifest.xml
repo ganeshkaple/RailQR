@@ -14,19 +14,23 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".TrainListActivity"
-            android:label="@string/title_activity_train_list"
-            android:exported="true"
+            android:name=".TrainDetailsActivity"
+            android:label="@string/title_activity_train_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".TrainListActivity"
+            android:exported="true"
+            android:label="@string/title_activity_train_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".PassengerDetails"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".AdminAadharInsert"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Booking_Form"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

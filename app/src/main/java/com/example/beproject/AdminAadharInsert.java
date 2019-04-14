@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.beproject.models.InsertAadharData;
+import com.example.beproject.models.AadharData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,7 +18,7 @@ public class AdminAadharInsert extends AppCompatActivity {
     Button btn;
 
     DatabaseReference reff;
-    InsertAadharData insertAadharData;
+    AadharData aadharData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class AdminAadharInsert extends AppCompatActivity {
         address = findViewById(R.id.txt_address);
         btn = findViewById(R.id.buttonSubmit);
 
-        insertAadharData = new InsertAadharData();
+        aadharData = new AadharData();
         reff = FirebaseDatabase.getInstance().getReference().child("AadharData");
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -48,14 +48,14 @@ public class AdminAadharInsert extends AppCompatActivity {
                 String Address = address.getText().toString().trim();
 
 
-                insertAadharData.setAadharNo(AadharNo);
-                insertAadharData.setName(Name);
-                insertAadharData.setContact(Contact);
-                insertAadharData.setAddress(Address);
-                insertAadharData.setDOB(dateofBirth);
-                insertAadharData.setEmail(Email);
+                aadharData.setAadharNo(AadharNo);
+                aadharData.setName(Name);
+                aadharData.setContact(Contact);
+                aadharData.setAddress(Address);
+                aadharData.setDOB(dateofBirth);
+                aadharData.setEmail(Email);
 
-                reff.child(AadharNo).setValue(insertAadharData);
+                reff.child(AadharNo).setValue(aadharData);
 
                 Toast.makeText(AdminAadharInsert.this, "Data Added Succesfully", Toast.LENGTH_SHORT).show();
 

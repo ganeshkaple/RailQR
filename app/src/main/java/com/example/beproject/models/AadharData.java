@@ -1,6 +1,6 @@
 package com.example.beproject.models;
 
-public class InsertAadharData {
+public class AadharData {
 
     private String aadharNo;
     private String name;
@@ -9,7 +9,7 @@ public class InsertAadharData {
     private String address;
     private String DOB;
 
-    public InsertAadharData() {
+    public AadharData() {
 
     }
 
@@ -17,7 +17,7 @@ public class InsertAadharData {
         return aadharNo;
     }
 
-    public InsertAadharData setAadharNo(String aadharNo) {
+    public AadharData setAadharNo(String aadharNo) {
         this.aadharNo = aadharNo;
         return this;
     }
@@ -26,7 +26,7 @@ public class InsertAadharData {
         return name;
     }
 
-    public InsertAadharData setName(String name) {
+    public AadharData setName(String name) {
         this.name = name;
         return this;
     }
@@ -35,7 +35,7 @@ public class InsertAadharData {
         return email;
     }
 
-    public InsertAadharData setEmail(String email) {
+    public AadharData setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -44,7 +44,7 @@ public class InsertAadharData {
         return contact;
     }
 
-    public InsertAadharData setContact(String contact) {
+    public AadharData setContact(String contact) {
         this.contact = contact;
         return this;
     }
@@ -53,7 +53,7 @@ public class InsertAadharData {
         return address;
     }
 
-    public InsertAadharData setAddress(String address) {
+    public AadharData setAddress(String address) {
         this.address = address;
         return this;
     }
@@ -62,7 +62,7 @@ public class InsertAadharData {
         return DOB;
     }
 
-    public InsertAadharData setDOB(String DOB) {
+    public AadharData setDOB(String DOB) {
         this.DOB = DOB;
         return this;
     }

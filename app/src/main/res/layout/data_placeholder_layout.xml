@@ -4,16 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_train_item"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="187dp"
     android:layout_marginTop="20dp"
     android:visibility="visible">
-    <!--    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">-->
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,63 +23,63 @@
             android:weightSum="1">
 
 
-            <TextView
+            <View
                 android:id="@+id/Saturday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="S"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/friday"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/sunday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="S"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/Saturday"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/tuesday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="T"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/Monday"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/friday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="F"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/thursday"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/thursday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="T"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/Wednesday"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <View
                 android:id="@+id/Wednesday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="W"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/tuesday"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,92 +99,76 @@
                 app:layout_constraintVertical_bias="0.36" />
 
 
-            <TextView
-                android:id="@+id/trainNameTextView"
+            <View
+                android:id="@+id/trainNameView"
                 android:layout_width="210dp"
                 android:layout_height="23dp"
                 android:layout_marginStart="16dp"
-                android:text="TextView"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/SourceTextView"
+            <View
+                android:id="@+id/SourceView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="21dp"
-                android:text="TextView"
+                android:background="@color/colorBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trainNameTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/trainNameView" />
 
-            <TextView
-                android:id="@+id/DestinationTextView"
+            <View
+                android:id="@+id/DestinationView"
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="17dp"
-                android:text="TextView"
+                android:background="@color/colorBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/SourceTextView"
-                app:layout_constraintTop_toBottomOf="@+id/trainNameTextView" />
+                app:layout_constraintStart_toEndOf="@+id/SourceView"
+                app:layout_constraintTop_toBottomOf="@+id/trainNameView" />
 
-            <TextView
+            <View
                 android:id="@+id/TimeofTrain"
                 android:layout_width="47dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="13dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="11dp"
-                android:text="TextView"
+                android:background="@color/colorBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/DestinationTextView"
-                app:layout_constraintTop_toBottomOf="@+id/trainNameTextView" />
+                app:layout_constraintStart_toEndOf="@+id/DestinationView"
+                app:layout_constraintTop_toBottomOf="@+id/trainNameView" />
 
-            <TextView
+            <View
                 android:id="@+id/Monday"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="40dp"
-                android:text="M"
+                android:background="@color/colorBackground"
                 app:layout_constraintStart_toEndOf="@+id/TimeofTrain"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-    <!--
 
-        <include
+        <View
             layout="@layout/class_item_view"
-            android:layout_height="wrap_content"
-
             android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TimeofTrain"
             app:layout_constraintVertical_bias="0.0" />
-    -->
-    <!--
+
     </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:id="@+id/seat_availability_layout"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ticket_fare_text_view"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/seats_text_view"/>
-            </LinearLayout>
-        </LinearLayout>-->
 </androidx.cardview.widget.CardView>

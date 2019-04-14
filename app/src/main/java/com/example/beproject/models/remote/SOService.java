@@ -29,7 +29,7 @@ public interface SOService {
     Call<SOAnswerResponse> getAnswers(@Query("tagged") String tags);
 
     //DateFormat should be dd-mm-yyyy
-    @GET("/between/source/{stn_code_source}/dest/{stn_code_dest}/date/{date}/apikey/{apikey}/")
+    @GET("between/source/{stn_code_source}/dest/{stn_code_dest}/date/{date}/apikey/{apikey}/")
     Observable<TrainWrapper> getTrainsBetweenStations(@Path("stn_code_source") String sourceStationCode, @Path("stn_code_dest") String destStationCode, @Path("date") String dateOfJourney, @Path("apikey") String apiKey);
 
 

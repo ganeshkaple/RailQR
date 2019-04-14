@@ -1,12 +1,15 @@
 
 package com.example.beproject.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Train {
+public class Train implements Parcelable {
 
     @SerializedName("number")
     @Expose
@@ -29,12 +32,46 @@ public class Train {
     @SerializedName("to_station")
     @Expose
     private Station toStation;
-    @SerializedName("classes")
-    @Expose
-    private List<java.lang.Class> classes = null;
+
+    public static final Creator<Train> CREATOR = new Creator<Train>() {
+        @Override
+        public Train createFromParcel(Parcel in) {
+            return new Train(in);
+        }
+
+        @Override
+        public Train[] newArray(int size) {
+            return new Train[size];
+        }
+    };
     @SerializedName("days")
     @Expose
     private List<Day> days = null;
+    @SerializedName("classes")
+    @Expose
+    private List<Class> classes = null;
+
+    protected Train(Parcel in) {
+        number = in.readString();
+        name = in.readString();
+        travelTime = in.readString();
+        srcDepartureTime = in.readString();
+        destArrivalTime = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(number);
+        dest.writeString(name);
+        dest.writeString(travelTime);
+        dest.writeString(srcDepartureTime);
+        dest.writeString(destArrivalTime);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     public String getNumber() {
         return number;
@@ -76,12 +113,27 @@ public class Train {
         this.destArrivalTime = destArrivalTime;
     }
 
+    public Station getFromStation() {
+        return fromStation;
+    }
 
-    public List<java.lang.Class> getClasses() {
+    public void setFromStation(Station fromStation) {
+        this.fromStation = fromStation;
+    }
+
+    public Station getToStation() {
+        return toStation;
+    }
+
+    public void setToStation(Station toStation) {
+        this.toStation = toStation;
+    }
+
+    public List<Class> getClasses() {
         return classes;
     }
 
-    public void setClasses(List<java.lang.Class> classes) {
+    public void setClasses(List<Class> classes) {
         this.classes = classes;
     }
 
@@ -93,21 +145,6 @@ public class Train {
         this.days = days;
     }
 
-    public Station getFromStation() {
-        return fromStation;
-    }
 
-    public Train setFromStation(Station fromStation) {
-        this.fromStation = fromStation;
-        return this;
-    }
-
-    public Station getToStation() {
-        return toStation;
-    }
-
-    public Train setToStation(Station toStation) {
-        this.toStation = toStation;
-        return this;
-    }
 }
+

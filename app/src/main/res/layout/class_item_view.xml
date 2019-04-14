@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/class_view_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/A1_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="1A"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/A2_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="2A"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/A3_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="3A"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/SL_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="SL"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/S2_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="2S"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/E3_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="3E"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/EC_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="EC"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/CC_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="CC"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/EA_Class_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="EA"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
