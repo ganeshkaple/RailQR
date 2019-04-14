@@ -288,8 +288,8 @@ public class Booking_Form extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String stationName = s.toString();
-                if (stationName.length() > 3)
-                    loadAutoCompleteSuggestions(stationName, StationTypeEnum.SOURCE);
+                //   if (stationName.length() > 3)
+                //              loadAutoCompleteSuggestions(stationName, StationTypeEnum.SOURCE);
             }
         });
 
@@ -325,8 +325,8 @@ public class Booking_Form extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String stationName = s.toString();
-                if (stationName.length() > 3)
-                    loadAutoCompleteSuggestions(stationName, StationTypeEnum.DESTINATION);
+                //   if (stationName.length() > 3)
+                //   loadAutoCompleteSuggestions(stationName, StationTypeEnum.DESTINATION);
             }
         });
 
@@ -343,13 +343,13 @@ public class Booking_Form extends AppCompatActivity {
 
 
     private void loadAutoCompleteSuggestions(String stationName, StationTypeEnum stationType) {
-        service.getStationNames(stationName, service.API_KEY)
+        service.getStationNamesRx(stationName, service.API_KEY)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<StationApiResponse>() {
                     @Override
                     public void onCompleted() {
-                        // Toast.makeText(Booking_Form.this, "Call completed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Booking_Form.this, "Call completed", Toast.LENGTH_LONG).show();
                     }
 
                     @Override

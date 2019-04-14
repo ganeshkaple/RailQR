@@ -16,13 +16,20 @@
         <activity
             android:name=".TrainListActivity"
             android:label="@string/title_activity_train_list"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".PassengerDetails"></activity>
+        <activity
+            android:name=".PassengerDetails"
+            android:exported="true"></activity>
         <activity
             android:name=".AdminAadharInsert"
             android:exported="true"></activity>
-        <activity android:name=".Booking_Form"></activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Booking_Form"
+            android:exported="true"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity android:name=".Login_Form">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Signup_Form" />
+        <activity
+            android:name=".Signup_Form"
+            android:exported="true" />
     </application>
 
 </manifest>

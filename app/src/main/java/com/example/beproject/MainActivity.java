@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadAnswer(String stationName) {
-       /* service.getStationNames("pun", service.API_KEY).enqueue(new Callback<SOAnswerResponse>() {
+       /* service.getStationNamesRx("pun", service.API_KEY).enqueue(new Callback<SOAnswerResponse>() {
 
 
             @Override
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        /*service.getStationNames("pun", service.API_KEY)
+        /*service.getStationNamesRx("pun", service.API_KEY)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<List<Station>>() {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 autoCompleteStationsAdapter.updateAnswers(stations);
             }
         });*/
-        service.getStationNames(stationName, service.API_KEY)
+        service.getStationNamesRx(stationName, service.API_KEY)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<StationApiResponse>() {

@@ -1,6 +1,7 @@
 package com.example.beproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,9 @@ import com.example.beproject.models.remote.SOService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 
 public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterable {
@@ -44,21 +44,40 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
     @Override
     public Filter getFilter() {
         return new Filter() {
+
+            private Object lock = new Object();
+            private Object lockTwo = new Object();
+            private boolean stationResults = false;
+
+
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
-                if (constraint != null) {
+
+                if (constraint == null || constraint.length() == 0) {
+                    synchronized (lock) {
+                        filterResults.values = new ArrayList<Station>();
+                        filterResults.count = 0;
+
+                    }
+                } else {
                     items.clear();
-                    service.getStationNames(constraint.toString(), service.API_KEY)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeOn(Schedulers.io())
+                    service.getStationNamesRx(constraint.toString(), service.API_KEY)
+                            //       .observeOn(AndroidSchedulers.mainThread())
+                            //     .subscribeOn(Schedulers.io())
+                            .debounce(3000, TimeUnit.MILLISECONDS)
+                            .distinctUntilChanged()
+                            .toBlocking()
+
                             .subscribe(new Observer<StationApiResponse>() {
                                 @Override
                                 public void onCompleted() {
+                                    Log.d(AutoCompleteStationsAdapter.this.toString(), "Call Completed ");
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
+                                    Log.d(AutoCompleteStationsAdapter.this.toString(), "Call Failed ", e);
 
                                 }
 
@@ -68,11 +87,26 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
                                     List<Station> stations = stationApiResponse.getStations();
                                     items = stations;
 
+                                    //inform waiting thread about api call completion
+                                    stationResults = true;
+                                    synchronized (lockTwo) {
+                                        lockTwo.notifyAll();
+                                    }
+
 
                                 }
                             });
 
+                    //wait for the results from asynchronous API call
+                    while (!stationResults) {
+                        synchronized (lockTwo) {
+                            try {
+                                lockTwo.wait();
+                            } catch (InterruptedException e) {
 
+                            }
+                        }
+                    }
                     filterResults.values = items;
                     filterResults.count = items.size();
                 }
@@ -80,8 +114,8 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
             }
 
             @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                if (results != null && (results.count > 0)) {
+            protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+                if (filterResults != null && (filterResults.count > 0)) {
                     notifyDataSetChanged();
                 } else {
                     notifyDataSetInvalidated();

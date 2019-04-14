@@ -18,8 +18,12 @@ public interface SOService {
     String API_KEY = "v7wvv0wabr";
 
     @GET("suggest-station/name/{stn_name}/apikey/{api_key}/")
-    Observable<StationApiResponse> getStationNames(@Path("stn_name") String stationName,
-                                                   @Path("api_key") String apiKey);
+    Observable<StationApiResponse> getStationNamesRx(@Path("stn_name") String stationName,
+                                                     @Path("api_key") String apiKey);
+
+    @GET("suggest-station/name/{stn_name}/apikey/{api_key}/")
+    Call<StationApiResponse> getStationNames(@Path("stn_name") String stationName,
+                                             @Path("api_key") String apiKey);
 
     @GET("/answers?order=desc&sort=activity&site=stackoverflow")
     Call<SOAnswerResponse> getAnswers(@Query("tagged") String tags);
