@@ -6,35 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-
-
-        android:id="@+id/linearLayout"
+    <RelativeLayout
+        android:id="@+id/book_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="5dp"
         android:baselineAligned="false"
         android:orientation="vertical"
-        android:padding="30dp"
+        android:padding="32dp"
         tools:context=".Booking_Form">
-
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteSourceStation"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:baselineAligned="false"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/roboto"
             android:hint="From"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:padding="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/textColor"
+            android:textSize="18sp">
 
             <requestFocus />
         </AutoCompleteTextView>
@@ -58,178 +51,160 @@
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteDestinationStation"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
+            android:layout_below="@+id/autoCompleteSourceStation"
+            android:fontFamily="@font/roboto"
             android:hint="To"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteSourceStation" />
-
-
+            android:padding="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
+        
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteDestinationStation"
-            app:srcCompat="@drawable/cal" />
-
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/autoCompleteDestinationStation"
+            app:srcCompat="@drawable/ic_cal"
+            android:layout_toRightOf="@+id/textView"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"/>
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="5dp"
-            android:text="Date"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/autoCompleteDestinationStation" />
+            android:layout_below="@+id/autoCompleteDestinationStation"
+            android:fontFamily="@font/roboto"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Date : "
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="124dp"
             android:entries="@array/Classes"
             android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="30dp"
+            android:padding="8dp"/>
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
+            android:layout_below="@+id/spinner"
+            android:fontFamily="@font/roboto"
+            android:padding="8dp"
             android:text="Book for Yourself"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
 
         <CheckBox
             android:id="@+id/checkBox2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:layout_below="@+id/checkBox"
+            android:fontFamily="@font/roboto"
+            android:padding="8dp"
             android:text="Book Tickets for family and friends"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passenger2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox2">
+            android:layout_below="@+id/checkBox2"
+            android:padding="8dp">
 
             <EditText
                 android:id="@+id/pas2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
                 android:hint="Enter Aadhar Number "
-                android:inputType="number" />
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passenger3"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passenger2">
+            android:layout_below="@+id/passenger2"
+            android:padding="8dp">
 
             <EditText
                 android:id="@+id/pas3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/roboto"
                 android:hint="Enter Aadhar Number"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passenger4"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passenger3">
+            android:layout_below="@+id/passenger3"
+            android:padding="8dp">
 
             <EditText
                 android:id="@+id/pas4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:hint="Enter Aadhar Number"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/button_rounded"
-            android:text="Book Ticket"
-            android:textColor="#ffffff"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passenger5" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passenger5"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passenger4">
+            android:layout_below="@+id/passenger4"
+            android:padding="8dp">
 
             <EditText
                 android:id="@+id/pas5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/passenger5"
+                android:fontFamily="@font/roboto"
                 android:hint="Enter Aadhar Number"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passenger5"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/roboto"
+            android:padding="18dp"
+            android:text="Book Ticket"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 </ScrollView>

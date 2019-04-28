@@ -32,6 +32,7 @@ public class TrainDetailsActivity extends AppCompatActivity {
         bundle.putParcelable(TRAIN_OBJECT, item);
         Intent intent = new Intent(context, TrainDetailsActivity.class);
         intent.putExtra("trainBundle", bundle);
+        context.startActivity(intent);
 
     }
 

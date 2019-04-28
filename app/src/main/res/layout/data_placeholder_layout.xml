@@ -92,7 +92,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="0.1"
                 android:contentDescription="@string/location_marker"
-                android:src="@drawable/marker_location"
+                android:src="@drawable/ic_location"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

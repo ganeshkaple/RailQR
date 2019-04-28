@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -197,7 +196,7 @@ public class Booking_Form extends AppCompatActivity {
                 //String uid=firebaseAuth.getCurrentUser().getUid();
                 //Toast.makeText(Booking_Form.this, "hello:"+uid , Toast.LENGTH_LONG).show();
 
-             /*   String a2 = pas2.getText().toString();
+                String a2 = pas2.getText().toString();
                 String a3 = pas3.getText().toString();
                 String a4 = pas4.getText().toString();
                 String a5 = pas5.getText().toString();
@@ -212,17 +211,17 @@ public class Booking_Form extends AppCompatActivity {
                     a5 = "NA";
                 if (UID.matches(""))
                     UID = "NA";
-*/
+
 
                 //Toast.makeText(Booking_Form.this,"Passenger2222:"+uid, Toast.LENGTH_LONG).show();
-/*
+
                 Intent intent = new Intent(getBaseContext(), PassengerDetails.class);
                 intent.putExtra("uid", UID);
                 intent.putExtra("passenger2", a2);
                 intent.putExtra("passenger3", a3);
                 intent.putExtra("passenger4", a4);
-                intent.putExtra("passenger5", a5);*/
-                String sourceStationCode = autoCompleteSourceStation.getText().toString();
+                intent.putExtra("passenger5", a5);
+               /* String sourceStationCode = autoCompleteSourceStation.getText().toString();
                 String destinationStationCode = autoCompleteDestinationStation.getText().toString();
                 if (TextUtils.isEmpty(sourceStationCode) && TextUtils.isEmpty(destinationStationCode) && journeyDate != null)
                     return;
@@ -231,8 +230,8 @@ public class Booking_Form extends AppCompatActivity {
 
                 intent.putExtra(SOURCE_STATION_CODE, sourceStationCode);
                 intent.putExtra(DESTINATION_STATION_CODE, destinationStationCode);
-                intent.putExtra(JOURNEY_DATE, journeyDate);
-
+               // intent.putExtra(JOURNEY_DATE, journeyDate.toString());
+*/
                 startActivity(intent);
             }
         });
@@ -249,10 +248,13 @@ public class Booking_Form extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                textView.setText(day + "/" + (month + 1) + "/" + year);
+                                textView.setText(day + "-" + (month + 1) + "-" + year);
 
 
                                 journeyDate = new Date(day, month, year);
+                               // Log.e("Date - ", String.valueOf(journeyDate));
+                                 //String JDate = String.valueOf(journeyDate);
+                                 //Log.e("Date - ", JDate);
 
                             }
                         }, year, month, dayofmonth);
