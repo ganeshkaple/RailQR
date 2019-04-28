@@ -2,6 +2,7 @@ package com.example.beproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -9,15 +10,15 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class Signup_Form extends AppCompatActivity {
 
@@ -43,7 +44,9 @@ public class Signup_Form extends AppCompatActivity {
         txtPassword = findViewById(R.id.txt_password);
         txtConfirmPassword = findViewById(R.id.txt_confirm_password);
         txtAadharNo = findViewById(R.id.txt_aadharno);
+        txtAadharNo.addTextChangedListener(new FourDigitTextWatcher());
         txtContactNo = findViewById(R.id.txt_contactno);
+        txtContactNo.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         btnRegister = findViewById(R.id.buttonRegister);
         progressBar = findViewById(R.id.progressBar);
 
@@ -72,7 +75,7 @@ public class Signup_Form extends AppCompatActivity {
                     Toast.makeText(Signup_Form.this, "Please Enter Aadhar number", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (aadhar.length() != 12) {
+                if (aadhar.length() != 15) {
 
                     Toast.makeText(Signup_Form.this, "Invalid Aadhar number", Toast.LENGTH_SHORT).show();
                     return;

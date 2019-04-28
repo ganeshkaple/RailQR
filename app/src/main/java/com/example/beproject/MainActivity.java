@@ -113,6 +113,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showErrorMessage() {
-        Toast.makeText(this, "Error again, Bitch", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Error again,", Toast.LENGTH_LONG).show();
     }
 }

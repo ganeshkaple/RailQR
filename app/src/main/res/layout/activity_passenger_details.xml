@@ -5,266 +5,316 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".PassengerDetails">
+        tools:context=".PassengerDetails"
+        android:padding="8dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card1"
             android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="186dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/name1"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
                     android:hint="Name"
-                    android:textSize="25sp" />
-
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_alignParentTop="true"
+                    android:padding="8dp"/>
+                
                 <TextView
                     android:id="@+id/aadhar1"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Aadhar Number"
-                    android:textSize="25sp" />
-
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp" 
+                    android:layout_below="@+id/name1"
+                    android:padding="8dp"/>
+                
                 <TextView
                     android:id="@+id/age1"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Age"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp" 
+                    android:layout_below="@+id/aadhar1"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/Gender1"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Gender"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp" 
+                    android:layout_below="@+id/age1"
+                    android:padding="8dp"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card2"
             android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card1">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="186dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/name2"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
                     android:hint="Name"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_alignParentTop="true"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/aadhar2"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Aadhar Number"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/name2"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/age2"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Age"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/aadhar2"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/Gender2"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Gender"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/age2"
+                    android:padding="8dp"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card3"
             android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card2">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="186dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/name3"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
                     android:hint="Name"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_alignParentTop="true"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/aadhar3"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Aadhar Number"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/name3"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/age3"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Age"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/aadhar3"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/Gender3"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Gender"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/age3"
+                    android:padding="8dp"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card4"
             android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card3">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="186dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/name4"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
                     android:hint="Name"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_alignParentTop="true"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/aadhar4"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Aadhar Number"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/name4"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/age4"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Age"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/aadhar4"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/Gender4"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Gender"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/age4"
+                    android:padding="8dp"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card5"
             android:layout_width="match_parent"
-            android:layout_height="187dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card4">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="186dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/name5"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
                     android:hint="Name"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_alignParentTop="true"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/aadhar5"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Aadhar Number"
-                    android:textSize="25sp" />
-
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/name5"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/age5"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Age"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/aadhar5"
+                    android:padding="8dp"/>
 
                 <TextView
                     android:id="@+id/Gender5"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:hint="Gender"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/roboto"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/age5"
+                    android:padding="8dp"/>
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>        
 
-
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>
