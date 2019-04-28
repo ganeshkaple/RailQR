@@ -1,3 +1,4 @@
+/*
 package com.example.beproject;
 
 import android.view.View;
@@ -41,3 +42,4 @@ class TrainClassesHolder extends ChildViewHolder {
 
     }
 }
+*/

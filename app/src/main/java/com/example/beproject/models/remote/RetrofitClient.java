@@ -13,10 +13,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by ganesh on 2/1/18.
- */
-
 public class RetrofitClient {
     private static final long REQUEST_TIMEOUT = 1000000L;
     private static Retrofit retrofit = null;

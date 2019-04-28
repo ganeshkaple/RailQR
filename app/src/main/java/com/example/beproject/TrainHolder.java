@@ -2,7 +2,6 @@ package com.example.beproject;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.beproject.models.Train;
@@ -41,26 +40,26 @@ class TrainHolder extends RecyclerView.ViewHolder {
     TextView TimeofTrain;
     @BindView(R.id.Monday)
     TextView Monday;
-    @BindView(R.id.A1_Class_textview)
-    TextView A1ClassTextview;
-    @BindView(R.id.A2_Class_textview)
-    TextView A2ClassTextview;
-    @BindView(R.id.A3_Class_textview)
-    TextView A3ClassTextview;
-    @BindView(R.id.SL_Class_textview)
-    TextView SLClassTextview;
-    @BindView(R.id.S2_Class_textview)
-    TextView S2ClassTextview;
-    @BindView(R.id.E3_Class_textview)
-    TextView E3ClassTextview;
-    @BindView(R.id.EC_Class_textview)
-    TextView ECClassTextview;
-    @BindView(R.id.CC_Class_textview)
-    TextView CCClassTextview;
-    @BindView(R.id.EA_Class_textview)
-    TextView EAClassTextview;
-    @BindView(R.id.class_view_id)
-    LinearLayout classViewId;
+    /* @BindView(R.id.A1_Class_textview)
+     TextView A1ClassTextview;
+     @BindView(R.id.A2_Class_textview)
+     TextView A2ClassTextview;
+     @BindView(R.id.A3_Class_textview)
+     TextView A3ClassTextview;
+     @BindView(R.id.SL_Class_textview)
+     TextView SLClassTextview;
+     @BindView(R.id.S2_Class_textview)
+     TextView S2ClassTextview;
+     @BindView(R.id.E3_Class_textview)
+     TextView E3ClassTextview;
+     @BindView(R.id.EC_Class_textview)
+     TextView ECClassTextview;
+     @BindView(R.id.CC_Class_textview)
+     TextView CCClassTextview;
+     @BindView(R.id.EA_Class_textview)
+     TextView EAClassTextview;*/
+    /*@BindView(R.id.class_view_id)
+    LinearLayout classViewId;*/
     @BindView(R.id.card_view_train_item)
     CardView cardViewTrainItem;
 
@@ -77,7 +76,7 @@ class TrainHolder extends RecyclerView.ViewHolder {
     public TrainHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        A1ClassTextview.setVisibility(View.GONE);
+       /* A1ClassTextview.setVisibility(View.GONE);
         A2ClassTextview.setVisibility(View.GONE);
         A3ClassTextview.setVisibility(View.GONE);
         SLClassTextview.setVisibility(View.GONE);
@@ -85,7 +84,7 @@ class TrainHolder extends RecyclerView.ViewHolder {
         E3ClassTextview.setVisibility(View.GONE);
         ECClassTextview.setVisibility(View.GONE);
         CCClassTextview.setVisibility(View.GONE);
-        EAClassTextview.setVisibility(View.GONE);
+        EAClassTextview.setVisibility(View.GONE);*/
     }
 
     public void setContent(Train train) {

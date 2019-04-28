@@ -24,6 +24,9 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.example.beproject.Booking_Form.DESTINATION_STATION_CODE;
+import static com.example.beproject.Booking_Form.SOURCE_STATION_CODE;
+
 public class TrainListActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
@@ -61,19 +64,20 @@ public class TrainListActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-     /*   if (intent != null) {
+        if (intent != null) {
             sourceStationCode = intent.getStringExtra(SOURCE_STATION_CODE);
             destinationStationCode = intent.getStringExtra(DESTINATION_STATION_CODE);
-            journeyDate = intent.getStringExtra(JOURNEY_DATE);
+            //journeyDate = intent.getStringExtra(JOURNEY_DATE);
+            journeyDate = "17-04-2019";
             populateTrainList(sourceStationCode, destinationStationCode, journeyDate);
         }
-        else {*/
+        /*else {*//*
         sourceStationCode = "BCT";
         destinationStationCode = "PUNE";
         journeyDate = "15-04-2019";
         populateTrainList(sourceStationCode, destinationStationCode, journeyDate);
-        //  }
-
+        *//*  }
+         */
 
     }
 
