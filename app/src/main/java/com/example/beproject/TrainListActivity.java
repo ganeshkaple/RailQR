@@ -71,8 +71,10 @@ public class TrainListActivity extends AppCompatActivity implements InternetConn
         trainslistRecyclerView.setLayoutManager(layoutManager);
         List<Train> trains = new ArrayList<>();
         //todo add multiple objects using this
-        trains.add(newObject());
+        for (int i = 0; i < 10; i++) {
 
+            trains.add(newObject());
+        }
 
         trainAdapter = new TrainAdapter(TrainListActivity.this, trains, item -> TrainDetailsActivity.newIntent(item, TrainListActivity.this));
         trainslistRecyclerView.setAdapter(trainAdapter);
