@@ -1,8 +1,5 @@
 package com.example.beproject.models;
 
-/**
- * Created by ganesh on 2/1/18.
- */
 
 import android.os.Parcel;
 import android.os.Parcelable;

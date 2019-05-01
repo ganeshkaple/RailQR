@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.beproject.models.Station;
 import com.example.beproject.models.StationApiResponse;
@@ -21,24 +24,27 @@ import java.util.concurrent.TimeUnit;
 import rx.Observer;
 
 
-public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterable {
-    private static final int MAX_RESULTS = 10;
+public class AutoCompleteDestinationStationsAdapter extends BaseAdapter implements Filterable {
+    private static final int MAX_RESULTS = 50;
     private final Context context;
-    private final PostItemListener itemListener;/*
-    public AutoCompleteStationsAdapter(List<Station> items, Context context, PostItemListener itemListener) { ;
+    private final PostItemListener itemListener;
+    /*
+    public AutoCompleteSourceStationsAdapter(List<Station> items, Context context, PostItemListener itemListener) { ;
         this.items = items;
         this.context = context;
         this.itemListener = itemListener;
     }
 */
-    private List<Station> items = new ArrayList<>();
+    @NonNull
+    private List<Station> items;
     private SOService service;
 
-    public AutoCompleteStationsAdapter(Context context, SOService service, PostItemListener itemListener) {
+    public AutoCompleteDestinationStationsAdapter(Context context, SOService service, PostItemListener itemListener) {
         this.context = context;
         this.service = service;
         this.itemListener = itemListener;
 
+        items = new ArrayList<>();
     }
 
     @Override
@@ -52,7 +58,8 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
 
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                FilterResults filterResults = new FilterResults();
+                @NonNull FilterResults filterResults;
+                filterResults = new FilterResults();
 
                 if (constraint == null || constraint.length() == 0) {
                     synchronized (lock) {
@@ -61,32 +68,38 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
 
                     }
                 } else {
+
                     items.clear();
+
                     service.getStationNamesRx(constraint.toString(), service.API_KEY)
                             //       .observeOn(AndroidSchedulers.mainThread())
                             //     .subscribeOn(Schedulers.io())
-                            .debounce(3000, TimeUnit.MILLISECONDS)
+                            .debounce(30000, TimeUnit.MILLISECONDS)
                             .distinctUntilChanged()
                             .toBlocking()
 
                             .subscribe(new Observer<StationApiResponse>() {
                                 @Override
                                 public void onCompleted() {
-                                    Log.d(AutoCompleteStationsAdapter.this.toString(), "Call Completed ");
+                                    Log.d(AutoCompleteDestinationStationsAdapter.this.toString(), "Call Completed ");
+
                                 }
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    Log.d(AutoCompleteStationsAdapter.this.toString(), "Call Failed ", e);
+                                    Log.d(AutoCompleteDestinationStationsAdapter.this.toString(), "Call Failed ", e);
 
                                 }
 
                                 @Override
                                 public void onNext(StationApiResponse stationApiResponse) {
+                                    if (stationApiResponse.getDebit().equals(1) && stationApiResponse.getStations() != null) {
+                                        List<Station> stations = stationApiResponse.getStations();
+                                        if (!stations.isEmpty())
+                                            items = stations;
 
-                                    List<Station> stations = stationApiResponse.getStations();
-                                    items = stations;
-
+                                    } else
+                                        Toast.makeText(context, "API Exhausted ", Toast.LENGTH_LONG).show();
                                     //inform waiting thread about api call completion
                                     stationResults = true;
                                     synchronized (lockTwo) {
@@ -107,6 +120,7 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
                             }
                         }
                     }
+
                     filterResults.values = items;
                     filterResults.count = items.size();
                 }
@@ -133,11 +147,20 @@ public class AutoCompleteStationsAdapter extends BaseAdapter implements Filterab
 
     @Override
     public int getCount() {
+
         return items.size();
     }
 
     public Station getItem(int adapterPosition) {
-        return items.get(adapterPosition);
+        Log.d("STATIONSADAPTER", items.size() + " Before " + adapterPosition);
+
+        if (items.size() > adapterPosition) {
+            return items.get(adapterPosition);
+        }
+        //    notifyDataSetChanged();
+        Log.d("STATIONSADAPTER", items.size() + " After " + adapterPosition);
+
+        return null;
     }
 
     @Override

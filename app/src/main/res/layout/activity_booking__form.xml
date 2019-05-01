@@ -16,89 +16,116 @@
         android:padding="32dp"
         tools:context=".Booking_Form">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteSourceStation"
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/autoCompleteSourceStationFrameLayout"
+
             android:layout_alignParentTop="true"
             android:layout_marginBottom="18dp"
-            android:fontFamily="@font/roboto"
-            android:hint="From"
-            android:padding="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/textColor"
-            android:textSize="18sp">
+            android:layout_height="wrap_content">
 
-            <requestFocus />
-        </AutoCompleteTextView>
-        <!--
+            <com.example.beproject.DelayedAutoCompleteTextView
+                android:id="@+id/autoCompleteSourceStation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-                <ProgressBar
-                    android:id="@+id/pb_loading_indicator"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="47dp"
-                    android:layout_height="43dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="116dp"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner"
-                    tools:visibility="gone" />
+                android:layout_below="@+id/autoCompleteSourceStationFrameLayout"
+                android:layout_alignStart="@+id/autoCompleteSourceStationFrameLayout"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/roboto"
+                android:hint="From"
+                android:padding="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/textColor"
+                android:textSize="18sp">
 
-        -->
+                <requestFocus />
+            </com.example.beproject.DelayedAutoCompleteTextView>
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteDestinationStation"
+
+            <ProgressBar
+                android:id="@+id/pb_loading_indicator_source"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="47dp"
+                android:layout_height="43dp"
+                android:layout_alignEnd="@+id/autoCompleteSourceStation"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="379dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/autoCompleteSourceStation"
+                app:layout_constraintTop_toBottomOf="@+id/autoCompleteDestinationStation"
+                tools:visibility="gone" />
+
+
+        </FrameLayout>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/autoCompleteDestinationStationFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/autoCompleteSourceStation"
-            android:fontFamily="@font/roboto"
-            android:hint="To"
-            android:padding="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/textColor"
-            android:textSize="18sp" />
-        
+            android:layout_below="@+id/autoCompleteSourceStationFrameLayout">
+
+            <com.example.beproject.DelayedAutoCompleteTextView
+                android:id="@+id/autoCompleteDestinationStation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/autoCompleteDestinationStationFrameLayout"
+                android:layout_alignStart="@+id/autoCompleteDestinationStationFrameLayout"
+                android:fontFamily="@font/roboto"
+                android:hint="To"
+                android:padding="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/pb_loading_indicator_destination"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="47dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="116dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintTop_toBottomOf="@+id/spinner"
+                tools:visibility="gone" />
+        </FrameLayout>
+
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/autoCompleteDestinationStation"
-            app:srcCompat="@drawable/ic_cal"
+            android:layout_below="@+id/autoCompleteDestinationStationFrameLayout"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="38dp"
             android:layout_toRightOf="@+id/textView"
-            android:layout_marginTop="8dp"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_cal" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/autoCompleteDestinationStation"
+            android:layout_below="@+id/autoCompleteDestinationStationFrameLayout"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/roboto"
             android:padding="16dp"
-            android:layout_marginTop="8dp"
             android:text="Date : "
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/textColor"
             android:textSize="18sp" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/Classes"
-            android:spinnerMode="dropdown"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="30dp"
-            android:padding="8dp"/>
-
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/roboto"
             android:padding="8dp"
             android:text="Book for Yourself"
@@ -111,6 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/checkBox"
+            android:layout_marginTop="21dp"
             android:fontFamily="@font/roboto"
             android:padding="8dp"
             android:text="Book Tickets for family and friends"
@@ -123,12 +151,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/checkBox2"
+            android:layout_marginTop="47dp"
             android:padding="8dp">
 
             <EditText
                 android:id="@+id/pas2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignStart="@+id/passenger2"
                 android:fontFamily="@font/roboto"
                 android:hint="Enter Aadhar Number "
                 android:inputType="number"
@@ -141,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passenger2"
+            android:layout_marginTop="34dp"
             android:padding="8dp">
 
             <EditText
@@ -159,12 +190,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passenger3"
+            android:layout_marginTop="34dp"
             android:padding="8dp">
 
             <EditText
                 android:id="@+id/pas4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/passenger4"
                 android:fontFamily="@font/roboto"
                 android:hint="Enter Aadhar Number"
                 android:inputType="number"
@@ -177,6 +210,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passenger4"
+            android:layout_marginTop="35dp"
             android:padding="8dp">
 
             <EditText
@@ -197,7 +231,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/passenger5"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="-16dp"
             android:background="@drawable/button_rounded"
             android:fontFamily="@font/roboto"
             android:padding="18dp"

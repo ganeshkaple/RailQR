@@ -10,12 +10,10 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
-/**
- * Created by ganesh on 2/1/18.
- */
+
 
 public interface SOService {
-    String API_KEY = "v7wvv0wabr";
+    String API_KEY = "3x6x2swia2";
 
     @GET("suggest-station/name/{stn_name}/apikey/{api_key}/")
     Observable<StationApiResponse> getStationNamesRx(@Path("stn_name") String stationName,

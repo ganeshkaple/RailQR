@@ -4,21 +4,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.beproject.models.StationApiResponse;
-import com.example.beproject.models.remote.ApiUtils;
-import com.example.beproject.models.remote.SOService;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.beproject.models.StationApiResponse;
+import com.example.beproject.models.remote.ApiUtils;
+import com.example.beproject.models.remote.SOService;
+
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AutoCompleteStationsAdapter autoCompleteStationsAdapter;
+    private AutoCompleteSourceStationsAdapter autoCompleteSourceStationsAdapter;
     private SOService service;
     private RecyclerView recyclerView;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         service = ApiUtils.getSOService();
         recyclerView = findViewById(R.id.recycler_view);
-       /* autoCompleteStationsAdapter = new AutoCompleteStationsAdapter(Collections.<Station>emptyList(),this,  new AutoCompleteStationsAdapter.PostItemListener() {
+       /* autoCompleteSourceStationsAdapter = new AutoCompleteSourceStationsAdapter(Collections.<Station>emptyList(),this,  new AutoCompleteSourceStationsAdapter.PostItemListener() {
             @Override
             public void onPostClick(String id) {
                 Toast.makeText(MainActivity.this,"eyah hfwsf" + id, Toast.LENGTH_LONG).show();
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         });
        */
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setAdapter(autoCompleteStationsAdapter);
+        //recyclerView.setAdapter(autoCompleteSourceStationsAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNext(List<Station> stations) {
-                autoCompleteStationsAdapter.updateAnswers(stations);
+                autoCompleteSourceStationsAdapter.updateAnswers(stations);
             }
         });*/
         service.getStationNamesRx(stationName, service.API_KEY)
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(StationApiResponse stationApiResponse) {
-                        autoCompleteStationsAdapter.updateAnswers(stationApiResponse.getStations());
+                        autoCompleteSourceStationsAdapter.updateAnswers(stationApiResponse.getStations());
 
                     }
                 });
