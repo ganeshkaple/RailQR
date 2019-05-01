@@ -14,15 +14,16 @@
         android:baselineAligned="false"
         android:orientation="vertical"
         android:padding="32dp"
+        android:visibility="visible"
         tools:context=".Booking_Form">
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
             android:id="@+id/autoCompleteSourceStationFrameLayout"
+            android:layout_width="match_parent"
 
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="18dp"
-            android:layout_height="wrap_content">
+            android:layout_marginBottom="18dp">
 
             <com.example.beproject.DelayedAutoCompleteTextView
                 android:id="@+id/autoCompleteSourceStation"
@@ -46,14 +47,14 @@
             <ProgressBar
                 android:id="@+id/pb_loading_indicator_source"
                 style="?android:attr/progressBarStyleSmall"
-                android:layout_width="47dp"
-                android:layout_height="43dp"
-                android:layout_alignEnd="@+id/autoCompleteSourceStation"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="379dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/autoCompleteSourceStation"
+                android:layout_marginStart="297dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/autoCompleteSourceStation"
                 app:layout_constraintStart_toEndOf="@+id/autoCompleteSourceStation"
                 app:layout_constraintTop_toBottomOf="@+id/autoCompleteDestinationStation"
                 tools:visibility="gone" />
@@ -84,15 +85,15 @@
             <ProgressBar
                 android:id="@+id/pb_loading_indicator_destination"
                 style="?android:attr/progressBarStyleSmall"
-                android:layout_width="47dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="116dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="297dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/checkBox"
-                app:layout_constraintTop_toBottomOf="@+id/spinner"
+                app:layout_constraintTop_toBottomOf="@+id/autoCompleteDestinationStation"
                 tools:visibility="gone" />
         </FrameLayout>
 
@@ -101,8 +102,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/autoCompleteDestinationStationFrameLayout"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="38dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="34dp"
             android:layout_toRightOf="@+id/textView"
             android:padding="16dp"
             app:srcCompat="@drawable/ic_cal" />

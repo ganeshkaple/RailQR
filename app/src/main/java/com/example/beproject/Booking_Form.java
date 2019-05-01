@@ -11,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,8 +47,6 @@ public class Booking_Form extends AppCompatActivity {
     ImageButton imageButton;
     @BindView(R.id.textView)
     TextView textView;
-    @BindView(R.id.spinner)
-    Spinner spinner;
     @BindView(R.id.checkBox)
     CheckBox checkBox;
     @BindView(R.id.checkBox2)
