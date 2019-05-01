@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".TrainDetailsActivity"
+            android:name=".otherApi.TrainDetailsActivity"
             android:label="@string/title_activity_train_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

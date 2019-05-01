@@ -1,5 +1,4 @@
-/*
-package com.example.beproject;
+package com.example.beproject.otherApi;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.example.beproject.otherApi.Train;
+import com.example.beproject.R;
 
 public class TrainDetailsActivity extends AppCompatActivity {
 
@@ -111,11 +109,11 @@ public class TrainDetailsActivity extends AppCompatActivity {
 
 
     private static class MyAdapter extends ArrayAdapter<String> implements ThemedSpinnerAdapter {
-        private final ThemedSpinnerAdapter.Helper mDropDownHelper;
+        private final Helper mDropDownHelper;
 
         public MyAdapter(Context context, String[] objects) {
             super(context, android.R.layout.simple_list_item_1, objects);
-            mDropDownHelper = new ThemedSpinnerAdapter.Helper(context);
+            mDropDownHelper = new Helper(context);
         }
 
         @Override
@@ -148,29 +146,23 @@ public class TrainDetailsActivity extends AppCompatActivity {
     }
 
 
-    */
-/**
- * A placeholder fragment containing a simple view.
- *//*
-
+    /**
+     * A placeholder fragment containing a simple view.
+     */
     public static class PlaceholderFragment extends Fragment {
-        */
-/**
- * The fragment argument representing the section number for this
- * fragment.
- *//*
-
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
         }
 
-        */
-/**
- * Returns a new instance of this fragment for the given section
- * number.
- *//*
-
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -189,4 +181,3 @@ public class TrainDetailsActivity extends AppCompatActivity {
         }
     }
 }
-*/

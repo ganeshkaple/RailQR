@@ -1,7 +1,11 @@
 package com.example.beproject.models.remote;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
+
+import com.example.beproject.InternetConnectionListener;
+import com.example.beproject.NetworkConnectionInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,11 +18,13 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final long REQUEST_TIMEOUT = 1000000L;
+    private static final long REQUEST_TIMEOUT = 30;
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient = null;
+    private static Retrofit retrofit2 = null;
+    private static InternetConnectionListener mInternetConnectionListener;
 
-    public static Retrofit getClient(String baseUrl) {
+    public static Retrofit getClient(String baseUrl, Context context) {
         if (retrofit == null) retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -26,7 +32,30 @@ public class RetrofitClient {
                 .client(initOkHttp())
                 .build();
         return retrofit;
+
     }
+
+    public static Retrofit getClient2(String baseUrl, Context context) {
+
+        if (retrofit2 == null) retrofit2 = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(initOkHttp())
+                .build();
+        return retrofit2;
+
+    }
+
+    public static void setInternetConnectionListener(InternetConnectionListener listener) {
+        mInternetConnectionListener = listener;
+    }
+
+    public static void removeInternetConnectionListener() {
+        mInternetConnectionListener = null;
+    }
+
+
 
     private static OkHttpClient initOkHttp() {
         OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
@@ -39,6 +68,19 @@ public class RetrofitClient {
 
         httpClient.addInterceptor(loggingInterceptor());
 
+        httpClient.addInterceptor(new NetworkConnectionInterceptor() {
+            @Override
+            public boolean isInternetAvailable() {
+                return isInternetAvailable();
+            }
+
+            @Override
+            public void onInternetUnavailable() {
+                if (mInternetConnectionListener != null) {
+                    mInternetConnectionListener.onInternetUnavailable();
+                }
+            }
+        });
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
             Request.Builder requestBuilder = original.newBuilder()

@@ -19,6 +19,7 @@ public interface SOService {
     Observable<StationApiResponse> getStationNamesRx(@Path("stn_name") String stationName,
                                                      @Path("api_key") String apiKey);
 
+
     @GET("suggest-station/name/{stn_name}/apikey/{api_key}/")
     Call<StationApiResponse> getStationNames(@Path("stn_name") String stationName,
                                              @Path("api_key") String apiKey);

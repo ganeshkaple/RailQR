@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        service = ApiUtils.getSOService();
+        service = ApiUtils.getSOService(this);
         recyclerView = findViewById(R.id.recycler_view);
        /* autoCompleteSourceStationsAdapter = new AutoCompleteSourceStationsAdapter(Collections.<Station>emptyList(),this,  new AutoCompleteSourceStationsAdapter.PostItemListener() {
             @Override

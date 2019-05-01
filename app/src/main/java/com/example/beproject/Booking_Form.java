@@ -90,7 +90,7 @@ public class Booking_Form extends AppCompatActivity {
         UID = getIntent().getStringExtra("CurrentUserUID");
 
         ButterKnife.bind(this);
-        service = ApiUtils.getSOService();
+        service = ApiUtils.getSOService(this);
 
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
@@ -215,6 +215,9 @@ public class Booking_Form extends AppCompatActivity {
            */
             String sourceStationCode = autoCompleteSourceStation.getText().toString();
             String destinationStationCode = autoCompleteDestinationStation.getText().toString();
+
+            //TODO also check if stations code are here, not names
+            //handle the validations
             if (TextUtils.isEmpty(sourceStationCode) && TextUtils.isEmpty(destinationStationCode) && journeyDate != null)
                 return;
 //TODO Add refined validations later

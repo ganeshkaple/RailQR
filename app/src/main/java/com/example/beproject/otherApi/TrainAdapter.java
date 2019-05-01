@@ -1,4 +1,4 @@
-package com.example.beproject;
+package com.example.beproject.otherApi;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,16 +10,16 @@ import android.view.animation.AnimationUtils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.beproject.models.Train;
+import com.example.beproject.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrainAdapter extends RecyclerView.Adapter<TrainHolder> {
-    private final Context context;
-    private List<Train> trainList;
-
     private static int currentPosition = 0;
+    private final Context context;
     private final ItemClickListener listener;
+    private List<Train> trainList = new ArrayList<>();
 
     public TrainAdapter(Context context, List<Train> trainList, ItemClickListener listener) {
         this.context = context;
