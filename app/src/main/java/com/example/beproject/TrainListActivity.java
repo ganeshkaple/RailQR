@@ -14,7 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.beproject.models.remote.ApiUtils;
 import com.example.beproject.models.remote.SOService;
-import com.example.beproject.otherApi.ItemClickListener;
 import com.example.beproject.otherApi.ServiceOther;
 import com.example.beproject.otherApi.Train;
 import com.example.beproject.otherApi.TrainAdapter;
@@ -25,7 +24,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -72,15 +70,11 @@ public class TrainListActivity extends AppCompatActivity implements InternetConn
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         trainslistRecyclerView.setLayoutManager(layoutManager);
         List<Train> trains = new ArrayList<>();
+        //todo add multiple objects using this
         trains.add(newObject());
 
 
-        trainAdapter = new TrainAdapter(TrainListActivity.this, Collections.emptyList(), new ItemClickListener() {
-            @Override
-            public void onItemClick(Train item) {
-                TrainDetailsActivity.newIntent(item, TrainListActivity.this);
-            }
-        });
+        trainAdapter = new TrainAdapter(TrainListActivity.this, trains, item -> TrainDetailsActivity.newIntent(item, TrainListActivity.this));
         trainslistRecyclerView.setAdapter(trainAdapter);
 
 
@@ -126,11 +120,21 @@ public class TrainListActivity extends AppCompatActivity implements InternetConn
         Faker faker = new Faker();
         Train train = new Train();
         train.setTrainNo(faker.number.number(5));
-        train.setArrivalTime(new SimpleDateFormat("hh:mm:ss").format(faker.time.forward(faker.number.positive())));
-        train.setDepartureTime(new SimpleDateFormat("hh:mm:ss").format(faker.time.forward(faker.number.positive())));
+        train.setArrivalTime(getFormat(faker));
+        train.setDepartureTime(getFormat(faker));
 //TODO add other params
+        train.setSource(faker.address.cityPrefix());
+
+        train.setDestination(faker.address.cityPrefix());
+        train.setTrainName(faker.name.name());
+        train.setTravelTime(getFormat(faker));
+        train.setTrainType("Express");
 
         return train;
+    }
+
+    private String getFormat(Faker faker) {
+        return new SimpleDateFormat("hh:mm:ss").format(faker.time.forward(faker.number.positive()));
     }
 
     /*  private void populateTrainList(String sourceStationCode, String destinationStationCode, String journeyDate) {
